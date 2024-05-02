@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><!-- for mathjax support -->
+
+    <script type="text/x-mathjax-config">
+        MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                processEscapes: true
+                }
+            chtml: {scale: 1.5},
+            svg: {scale: 1.5}
+            }
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Methods | Self-Contained Calibration of an Elastic Humanoid Upper Body Using Only a Head-Mounted RGB Camera</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Methods" />
+<meta name="author" content="johannes.tenhumberg@dlr.de" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/methods" />
+<meta property="og:url" content="http://localhost:4000/methods" />
+<meta property="og:site_name" content="Self-Contained Calibration of an Elastic Humanoid Upper Body Using Only a Head-Mounted RGB Camera" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Methods" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"johannes.tenhumberg@dlr.de"},"headline":"Methods","url":"http://localhost:4000/methods"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Self-Contained Calibration of an Elastic Humanoid Upper Body 
+Using Only a Head-Mounted RGB Camera" /><link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon.png">
+  
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Self-Contained Calibration of an Elastic Humanoid Upper Body 
+Using Only a Head-Mounted RGB Camera</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/robot">Robot</a><a class="page-link" href="/camera">Camera</a><a class="page-link" href="/methods">Methods</a><a class="page-link" href="/results">Results</a><a class="page-link" href="/dataset">Dataset</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Methods</h1>
+  </header>
+
+  <div class="post-content">
+    <h2 id="data-collection">Data Collection</h2>
+<p>By using a general rejection sampling approach and using the flexibility of the pan-tilt joints of the robots neck we were able to
+collect a large dataset of different robot configurations quickly.</p>
+
+<p><img src="/assets/imgs/kinect-right_q_configurations.png" alt="flowchart" class="this" style="width: 600px;
+display: block;
+margin-left: auto;
+margin-right: auto" />
+<em>The different distributions in configuration space of the right arm with seven joints.
+In red are the <a href="https://ieeexplore.ieee.org/document/6225004">taught poses</a> and our configurations resulting from the rejection sampling approach in blue.
+The joint limits are in black.</em></p>
+
+<p><img src="/assets/imgs/ub4.png" alt="flowchart" class="this" style="width: 600px;
+display: block;
+margin-left: auto;
+margin-right: auto" />
+<em>The different marker positions in the image for the left arm, the pole on the floor and the right arm.
+We move the pan-tilt joints of the robot’s neck to get a good coverage of the image over all markers.</em></p>
+
+<h2 id="virtual-noise">Virtual Noise</h2>
+
+<p><img src="/assets/imgs/probabilistic_graph.png" alt="flowchart" class="this" style="width: 600px; 
+display: block;
+margin-left: auto;
+margin-right: auto" />
+<em>Probabilistic graphical model of the calibration problem including the camera and robot model.
+For each of the \(N\) samples, it describes how the pixel coordinates \(u\) of a marker is computed from the joint configuration \(q\) and the model parameters \(\Theta\).
+<strong>Left (w/o red parts)</strong>: Original mapping with the real pixel measurement noise \(\eta_u\) as the only source of stochasticity.
+<strong>Right</strong>: An additional virtual cartesian noise node is added to compensate for the imperfect (actually deterministic) kinematic model.
+<strong>Left (with red parts)</strong>: The virtual noise can be incorporated into the original model, resulting in an effective pixel noise with a \(\tilde{\sigma}_u\) depending on the distance of the marker to the camera (\(\propto 1/z^2\)).</em></p>
+
+<hr />
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        johannes.tenhumberg@dlr.de
+    </div>
+  </div>
+    
+</footer>
+</body>
+
+</html>
