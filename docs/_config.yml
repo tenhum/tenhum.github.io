@@ -1,0 +1,20 @@
+theme: minima
+markdown: kramdown
+
+title: Johannes Tenhumberg
+
+author: johannes.tenhumberg@tum.de
+
+header_pages:
+  - _pages/cv.md
+  - _pages/publications.md
+  - _pages/axidraw.md
+
+
+include:
+    - _pages
+    
+exclude: 
+    - .gitignore
+    - Gemfile
+    - README.md
